@@ -55,7 +55,7 @@ jobs:
         with:
           repository: apache/tomcat # repo name with owner
           ref: master     # the branch that or sha to checkout
-          path : ./tomvat # relative path under $Gitbhub_workspace
+          path : ./tomcat # relative path under $Gitbhub_workspace
       - name: Set up Java 9
         uses: actions/setup-java@v1
         with:
