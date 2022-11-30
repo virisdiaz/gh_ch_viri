@@ -37,7 +37,7 @@ jobs:
 
   job2:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,8 +45,27 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Step two
-        run: "Get-Date"
+      - name: Check out tomcat-users.xml
+        run: |
+            ls -ltr
+            java -version
+            
+      - name:  Check out Apache Tomvat 
+        uses: actions/checkout@v2
+        with:
+          repository: apache/tomcat # repo name with owner
+          ref: master     # the branch that or sha to checkout
+          path : ./tomvat # relative path under $Gitbhub_workspace
+      - name: Set up Java 9
+        uses: actions/setup-java@v1
+        with:
+          java-version: '9.0.4'
+          java-package: jdk
+          architecture: x64
+      - name: List project files and vaja version
+        run : |
+            ls -ltr
+            java -version
 
   job3:
     # The type of runner that the job will run on
